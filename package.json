@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node src/index.js",
+    "client": "node src/client.js",
     "prettier": "npx prettier --check ./src",
     "lint": "eslint --fix ./src ",
     "prettier:write": "prettier --write ./src"

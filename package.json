@@ -4,9 +4,29 @@
   "description": "",
   "main": "index.js",
   "type": "module",
-  "scripts": {},
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "prettier": "npx prettier --check ./src",
+    "lint": "eslint --fix ./src ",
+    "prettier:write": "prettier --write ./src"
+  },
   "keywords": [],
   "author": "",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint",
+      "npm run prettier",
+      "git add"
+    ]
+  },
   "license": "ISC",
   "devDependencies": {
     "eslint": "^7.12.1",
@@ -15,6 +35,12 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "lint-staged": "^10.4.0",
+    "husky": "^4.3.0"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "winston": "^3.3.3"
   }
 }

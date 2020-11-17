@@ -40,7 +40,6 @@ export class DuplexServer {
     this.guestId++;
     socket.nickname = this.userPrefix + this.guestId;
     this.connections.add(socket);
-
     this.sendMessage(
       socket,
       types.INITIAL,
@@ -73,7 +72,7 @@ export class DuplexServer {
   }
 
   sendBroadcastMessage(socketFrom, type, message) {
-    if (this.connections.size === 0) {
+    if (!this.connections.size) {
       logger.info(messages.everyoneLeft);
       return;
     }
@@ -86,9 +85,9 @@ export class DuplexServer {
   }
 
   sendMessage(socket, type, message, nickname) {
-    const meta = Buffer.alloc(1);
+    const meta = Buffer.alloc(1); // 1 byte
     meta[0] = type;
-    const nicknameData = Buffer.alloc(256);
+    const nicknameData = Buffer.alloc(256); // 256 bytes
     nicknameData.write(nickname);
     logger.info(nicknameData.toString());
     socket.write(Buffer.concat([meta, nicknameData, message]));

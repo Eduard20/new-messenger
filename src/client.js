@@ -34,7 +34,7 @@ clients.on('data', (data) => {
       logger.info(`D ${messageFrom} ${messages.userDisconnected}`);
       break;
     case types.MESSAGE:
-      logger.info(` M ${messageFrom} ${message || messages.unknownMessage}`);
+      logger.info(`M ${messageFrom} ${message || messages.unknownMessage}`);
       break;
     case types.INITIAL:
       logger.info(`W ${messageFrom} ${message}`);
@@ -54,6 +54,9 @@ rl.on('line', (line) => {
   switch (line.trim()) {
     case 'exit':
       rl.close();
+      break;
+    case '/w':
+      // TODO: private message
       break;
     default:
       clients.write(line.trim());

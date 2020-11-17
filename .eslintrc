@@ -1,14 +1,8 @@
 {
-  "extends": ["standard", "prettier"],
-  "env": {
-    "es6": true,
-    "node": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 2018
-  },
+  "extends": "standard",
   "rules": {
     "semi": [2, "always"],
+    "no-console": ["error", { "allow": ["warn", "error"] }],
     "key-spacing": [
       "error",
       {
@@ -20,6 +14,19 @@
       {
         "ignoreComments": true
       }
-    ]
-  }
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "ignore",
+        "named": "ignore",
+        "asyncArrow": "ignore"
+      }
+    ],
+    "complexity": ["error", { "max": 40 }]
+  },
+  "env": {
+    "jest/globals": true
+  },
+  "plugins": ["jest"]
 }
